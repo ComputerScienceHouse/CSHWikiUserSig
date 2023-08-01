@@ -38,7 +38,7 @@ function parseUserSignatures($parser, $text) {
 
 function getUserInfoFromText($name) {
 	if(!isset($GLOBALS['ldap_ds'])){
-		$GLOBALS['ldap_ds'] = ldap_connect('ipa10-nrh.csh.rit.edu');
+		$GLOBALS['ldap_ds'] = ldap_connect('ipa11-nrh.csh.rit.edu');
 		ldap_bind($GLOBALS['ldap_ds'],'cn=wiki,ou=Apps,dc=csh,dc=rit,dc=edu','');
 	}
 	$sr = ldap_list($GLOBALS['ldap_ds'],'ou=Users,dc=csh,dc=rit,dc=edu',"(displayName=*$name*)",array('uid','sn','givenname','cn'));
@@ -48,7 +48,7 @@ function getUserInfoFromText($name) {
 }
 function getUserInfoFromUID($name) {
 	if(!isset($GLOBALS['ldap_ds'])){
-		$GLOBALS['ldap_ds'] = ldap_connect('ipa10-nrh.csh.rit.edu');
+		$GLOBALS['ldap_ds'] = ldap_connect('ipa11-nrh.csh.rit.edu');
 		ldap_bind($GLOBALS['ldap_ds'],'cn=wiki,ou=Apps,dc=csh,dc=rit,dc=edu','');
 	}
 	$sr = ldap_list($GLOBALS['ldap_ds'],'ou=Users,dc=csh,dc=rit,dc=edu',"(uid=$name)",array('uid','sn','givenname','cn'));
