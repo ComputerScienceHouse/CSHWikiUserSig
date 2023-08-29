@@ -48,7 +48,7 @@ function getLdapClient() {
 		echo "Bound!";
 		$bind_str = var_export($bind, true);
 		echo "Ldap bind complete: $bind_str";
-		if (!$bind && ldap_get_option($handle, 0x0032, $extended_error)) {
+		if (!$bind && ldap_get_option($GLOBALS['ldap_ds'], 0x0032, $extended_error)) {
 			echo "Error Binding to LDAP: $extended_error";
 		}
 	}
