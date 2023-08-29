@@ -42,7 +42,10 @@ function getLdapClient() {
 	if(!isset($GLOBALS['ldap_ds'])){
 		// ldap_set_option(NULL, LDAP_OPT_DEBUG_LEVEL, 7);
 		$GLOBALS['ldap_ds'] = ldap_connect('ldaps://ipa11-nrh.csh.rit.edu');
-    ldap_bind($GLOBALS['ldap_ds'],'krbprincipalname=wiki/yasuko.csh.rit.edu@CSH.RIT.EDU,cn=services,cn=accounts,dc=csh,dc=rit,dc=edu',$GLOBALS['csh_wiki_ldap_password']);
+		$bind = ldap_bind($GLOBALS['ldap_ds'],'krbprincipalname=wiki/yasuko.csh.rit.edu@CSH.RIT.EDU,cn=services,cn=accounts,dc=csh,dc=rit,dc=edu',$GLOBALS['csh_wiki_ldap_password']);
+		if ($bind && ldap_get_option($handle, 0x0032, $extended_error)) {
+			echo "Error Binding to LDAP: $extended_error";
+		}
 	}
 }
 
